@@ -1,4 +1,6 @@
 package naca122mvndemo;
+// This code is a translation of the previous C# code from NACA 121
+//https://github.com/MAD-NTID/NACA-121-01-Spring-2026/blob/main/OOPIIIa/Student.cs
 
 public class Student 
 {
