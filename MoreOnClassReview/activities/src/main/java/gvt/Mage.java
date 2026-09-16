@@ -1,19 +1,17 @@
 package gvt;
 
-import java.util.concurrent.ConcurrentHashMap;
 
-public class Mage 
+public class Mage extends Goat
 {
-    private final String name;
-    private int currentHP;
-    private int maximumHP;
+    private static final int MAXIMUM_HP = 120;
 
     public Mage(String name)
     {
-        this.name = name;
-        this.currentHP = maximumHP = 120;
+        super(name, MAXIMUM_HP);
+   
     }
 
+    @Override 
     public Attack attack()
     {
         int[] hits = {9,9,9,9};
@@ -23,6 +21,7 @@ public class Mage
         return new Attack(name, hits, type);
     }
 
+    @Override 
     public void takeDamage(Attack attack)
     {
         double damagePercent = 1.0; //100%
@@ -36,7 +35,6 @@ public class Mage
         double damageAmount = 0;
         // System.out.println("Damage percent:" + damagePercent);
         for(int hit: attack.getHits()){
-            System.out.println(hit);
             damageAmount+= (hit * damagePercent);
         }
 
@@ -70,28 +68,6 @@ public class Mage
             return;
         }
             
-    }
-
-    public void heal(int amount)
-    {
-        int recover = currentHP + amount;
-        if(recover > maximumHP)
-            currentHP = maximumHP;
-        else
-            currentHP = recover;
-
-    }
-
-    public boolean isConscious()
-    {
-        return currentHP > 0;
-    }
-
-    @Override 
-    public String toString()
-    {
-        return String.format("Goat:%s, Current HP:%d",name, currentHP);
-
     }
 
 }

@@ -3,13 +3,13 @@ package gvt;
 public abstract class Goat
 {
     private final String name;
-    private int currentHP;
+    protected int currentHP;
     private final int maximumHP;
 
-    public Goat(String name)
+    public Goat(String name, int maximumHP)
     {
         this.name = name;
-        this.currentHP = maximumHP = 120;
+        this.currentHP = this.maximumHP = maximumHP;
     }
 
     public abstract Attack attack();
@@ -19,11 +19,17 @@ public abstract class Goat
     public void heal(int amount)
     {
         int recover = currentHP + amount;
+        //prevent having more hp than the maximum hp
         if(recover > maximumHP)
             currentHP = maximumHP;
         else
             currentHP = recover;
 
+    }
+
+    public String getName()
+    {
+        return this.name;
     }
 
     public boolean isConscious()
