@@ -19,18 +19,18 @@ public class Main
         // }
         Enqueuing(nodeQueue, testingData);
 
-        // System.out.println(nodeQueue);
-        // System.out.println("Dequeuing");
-        // while(nodeQueue.size() > 0) {
-        //     System.out.println("Dequeue:" + nodeQueue.dequeue());
-        // }
+        // // System.out.println(nodeQueue);
+        // // System.out.println("Dequeuing");
+        // // while(nodeQueue.size() > 0) {
+        // //     System.out.println("Dequeue:" + nodeQueue.dequeue());
+        // // }
         Dequeuing(nodeQueue);
 
         // //testing array based
-        // Queue arrayQueue = new ArrayQueue();
+        Queue<String> arrayQueue = new ArrayQueue<String>();
 
-        // Enqueuing(arrayQueue, testingData);
-        // Dequeuing(arrayQueue);
+        Enqueuing(arrayQueue, testingData);
+        Dequeuing(arrayQueue);
 
 
     }

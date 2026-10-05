@@ -32,7 +32,7 @@ public class ArrayQueue<E> implements Queue<E>
 
     private void grow()
     {
-        if(this.size < this.elements.length)
+        if(this.size + 1 < this.elements.length)
             return;
 
         //double the size and copy the old elements into the new bucket
@@ -43,6 +43,7 @@ public class ArrayQueue<E> implements Queue<E>
 
         //set the old element to the new copy
         this.elements = copy;
+ 
     }
 
     @Override
@@ -52,7 +53,7 @@ public class ArrayQueue<E> implements Queue<E>
 
         this.size--;
         E element = (E)this.elements[this.front];
-        this.elements[this.front] = null; // set the previous front array location as null
+        this.elements[this.front] = null; // set the previous front array location as null so it become available for future use
 
         //taking wrap around into consideration
         this.front = ((this.front + 1) % this.elements.length);
@@ -75,13 +76,13 @@ public class ArrayQueue<E> implements Queue<E>
             return "null";
 
         String chain = "";
-        for(Object element: elements){
-            if(element == null)
-                break;
-
-            chain+=element + "->";
+        for(int i = 0; i < this.size; i++){
+            int index = (this.front + i) % this.elements.length;
+            chain += this.elements[index] + " -> ";
         }
         chain+="null";
+        // System.out.println("Front: " + this.front + " Back: " + this.back + " Size: " + this.size);
+        // System.out.println("Front: " + this.elements[this.front] + " Back: " + this.elements[this.back]);
 
         return chain;
     }
