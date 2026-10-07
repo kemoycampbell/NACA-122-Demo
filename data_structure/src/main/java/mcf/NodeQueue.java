@@ -1,9 +1,11 @@
 package mcf;
 
-public class NodeQueue<E> implements Queue<E>
+import java.util.Iterator;
+
+public class NodeQueue<E> implements Queue<E>, Iterable
 {
-    private Node<E> front;
-    private Node<E> back;
+    protected  Node<E> front;
+    protected Node<E> back;
     private int size;
 
     public NodeQueue()
@@ -66,6 +68,12 @@ public class NodeQueue<E> implements Queue<E>
             return this.front.toString();
 
         return "null";
+    }
+
+
+    @Override
+    public Iterator iterator() {
+        return new NodeQueueIterator<>(front);
     }
 
 }

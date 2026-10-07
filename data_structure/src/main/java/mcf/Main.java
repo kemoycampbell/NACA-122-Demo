@@ -32,6 +32,24 @@ public class Main
         Enqueuing(arrayQueue, testingData);
         Dequeuing(arrayQueue);
 
+        //autoboxing & primitive type
+        //you cannot use primitive as parameter for generic type
+        //Queue<int> example = new NodeQueue<int>();
+
+        //instead use the refrence types eg: Integer, String, etc "the class equivalent of the primitve type"
+        Queue<Integer> example = new NodeQueue<Integer>();
+
+        //the wrapper can translate between its class reference type and primitive
+        //this concept is called autoboxing and unboxing
+        int aIntData = 5;
+        //autoboxing
+        example.enqueue(aIntData);
+
+        //unboxing
+        int data = example.dequeue();
+        System.out.println(data);
+
+
 
     }
 
