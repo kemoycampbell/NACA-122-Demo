@@ -21,7 +21,8 @@ public class ForEachGeneric
         Enqueuing(nodeQueue, testingData);
 
         for (String string : nodeQueue) {
-            
+            System.out.println("Removing "+ string+ " from the queue");
+            nodeQueue.dequeue();
         }
     }
 

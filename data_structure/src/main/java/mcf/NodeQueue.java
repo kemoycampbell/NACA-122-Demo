@@ -2,7 +2,7 @@ package mcf;
 
 import java.util.Iterator;
 
-public class NodeQueue<E> implements Queue<E>, Iterable
+public class NodeQueue<E> implements Queue<E>, Iterable<E>
 {
     protected  Node<E> front;
     protected Node<E> back;

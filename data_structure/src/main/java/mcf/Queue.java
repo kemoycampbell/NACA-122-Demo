@@ -5,7 +5,7 @@ package mcf;
  * Queue
  */
 
-public interface Queue<E> 
+public interface Queue<E> extends Iterable<E>
 {
 
     /**
