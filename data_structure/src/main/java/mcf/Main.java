@@ -38,6 +38,7 @@ public class Main
 
         //instead use the refrence types eg: Integer, String, etc "the class equivalent of the primitve type"
         Queue<Integer> example = new NodeQueue<Integer>();
+    
 
         //the wrapper can translate between its class reference type and primitive
         //this concept is called autoboxing and unboxing

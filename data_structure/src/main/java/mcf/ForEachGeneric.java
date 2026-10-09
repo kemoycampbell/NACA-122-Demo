@@ -10,6 +10,12 @@ public class ForEachGeneric
             "90","100","3","4","7","8","9","11","12"
         };
 
+        //works fine for built in --> using java default built in iterator
+        // for(String data: testingData)
+        // {
+        //     System.out.println(data);
+        // }
+
         //testing node queue based
         Queue<String> nodeQueue = new NodeQueue<String>();
 
@@ -20,6 +26,7 @@ public class ForEachGeneric
         // }
         Enqueuing(nodeQueue, testingData);
 
+        //this is using our custom iterator because we had to tell java how to iterate
         for (String string : nodeQueue) {
             System.out.println("Removing "+ string+ " from the queue");
             nodeQueue.dequeue();

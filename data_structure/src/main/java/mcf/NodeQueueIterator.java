@@ -25,6 +25,7 @@ public class NodeQueueIterator<E> implements Iterator<E>
        return true;
     }
 
+
     @Override
     public E next() {
         //get the current data
@@ -34,5 +35,4 @@ public class NodeQueueIterator<E> implements Iterator<E>
         this.front = this.front.getNext();
         return data;
     }
-
 }
