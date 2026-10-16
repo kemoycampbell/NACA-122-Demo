@@ -1,45 +1,45 @@
 package binary_tree;
 
-public class BinaryNode 
+public class BinaryNode<E> 
 {
-    private int value;
-    private BinaryNode left;
-    private BinaryNode right;
+    private E value;
+    private BinaryNode<E> left;
+    private BinaryNode<E> right;
 
-    public BinaryNode(int value)
+    public BinaryNode(E value)
     {
         this.value = value;
         this.left = null;
         this.right = null;
     }
 
-    public int getValue()
+    public E getValue()
     {
         return this.value;
     }
 
-    public void setValue(int value)
+    public void setValue(E value)
     {
         this.value = value;
     }
 
-    public BinaryNode getLeft()
+    public BinaryNode<E> getLeft()
     {
         return this.left;
     }
 
-    public void setLeft(BinaryNode left)
+    public void setLeft(BinaryNode<E> left)
     {
         this.left = left;
     }
 
 
-    public BinaryNode getRight()
+    public BinaryNode<E> getRight()
     {
         return this.right;
     }
 
-    public void setRight(BinaryNode right)
+    public void setRight(BinaryNode<E> right)
     {
         this.right = right;
     }
@@ -80,10 +80,10 @@ public class BinaryNode
         return traverse;
     }
 
-    public boolean search(int target)
+    public boolean search(E target)
     {
         //search the middle
-        if(this.value == target)
+        if(this.value.equals(target))
             return true;
 
         boolean found = false;

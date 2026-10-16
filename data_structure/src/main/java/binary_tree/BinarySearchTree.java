@@ -1,8 +1,8 @@
 package binary_tree;
 
-public interface BinarySearchTree 
+public interface BinarySearchTree<E> 
 {
-    public void insert(int value);
-    public boolean search(int target);
+    public void insert(E value);
+    public boolean search(E target);
     public int size();
 }

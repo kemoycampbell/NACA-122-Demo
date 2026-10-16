@@ -1,8 +1,8 @@
 package binary_tree;
 
-public class NodeBST implements BinarySearchTree
+public class NodeBST<E extends Comparable<E>> implements BinarySearchTree<E>
 {
-    private BinaryNode root;
+    private BinaryNode<E> root;
     private int size;
 
     public NodeBST()
@@ -12,10 +12,10 @@ public class NodeBST implements BinarySearchTree
     }
 
     @Override
-    public void insert(int value) {
+    public void insert(E value) {
         //increment the size
         size++;
-        BinaryNode node = new BinaryNode(value);
+        BinaryNode<E> node = new BinaryNode<E>(value);
 
         //if the root is empty, we dont need to do anything
         if(root == null){
@@ -27,11 +27,12 @@ public class NodeBST implements BinarySearchTree
         binaryInsert(root, node);
     }
 
-    private void binaryInsert(BinaryNode node, BinaryNode nodeToInsert)
+    private void binaryInsert(BinaryNode<E> node, BinaryNode<E> nodeToInsert)
     {
-        int value = nodeToInsert.getValue();
-        if(value < node.getValue()){
-            BinaryNode left = node.getLeft();
+        E value = nodeToInsert.getValue();
+
+        if(value.compareTo(node.getValue()) < 0){
+            BinaryNode<E> left = node.getLeft();
             if(left == null) {
                 node.setLeft(nodeToInsert);
                 return;
@@ -39,7 +40,7 @@ public class NodeBST implements BinarySearchTree
             //go to the next left node recursively
             binaryInsert(left, nodeToInsert);  
         } else{
-            BinaryNode right = node.getRight();
+            BinaryNode<E> right = node.getRight();
             if(right == null)
             {
                 node.setRight(nodeToInsert);
@@ -51,21 +52,21 @@ public class NodeBST implements BinarySearchTree
     }
 
     @Override
-    public boolean search(int target) {
+    public boolean search(E target) {
         return binarySearch(root, target);
     }
 
-    private boolean binarySearch(BinaryNode node, int target)
+    private boolean binarySearch(BinaryNode<E> node, E target)
     {
         //the node value match the target
-        int currentValue = node.getValue();
-        if(target == currentValue){
+        E currentValue = node.getValue();
+        if(target.compareTo(currentValue) == 0){
             return true;
         }
 
         //the value is smaller we search the left recursively
-        BinaryNode nextNode = null;
-        if(target < currentValue){
+        BinaryNode<E> nextNode = null;
+        if(target.compareTo(currentValue) < 0){
             nextNode = node.getLeft();
         } else{
             nextNode = node.getRight();
