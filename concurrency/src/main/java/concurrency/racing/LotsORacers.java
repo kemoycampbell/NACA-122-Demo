@@ -1,5 +1,6 @@
 package concurrency.racing;
 
+import java.util.LinkedList;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -7,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 public class LotsORacers 
 {
-    private final static int NUM_RACERS = 50000;
+    private final static int NUM_RACERS = 50;
     private final static int NUM_LAPS = 10;
     private final static boolean DEBUG = false;
 
@@ -112,7 +113,7 @@ public class LotsORacers
     {
         ExecutorService executorService = Executors.newCachedThreadPool();
         long startTime = System.nanoTime();
-        Racer[] racers = new Racer[NUM_RACERS];
+        LinkedList<Racer> racers = new LinkedList<Racer>();
         CountDownLatch start = new CountDownLatch(1);
         CountDownLatch end = new CountDownLatch(NUM_RACERS);
 
@@ -121,12 +122,13 @@ public class LotsORacers
 
             //create the driver object and add it to the array
             Racer racer = new Racer(driver, NUM_LAPS, DEBUG);
-            racers[i] = racer;
+           
 
             executorService.submit(()->{
                 try{
                     start.await();
                     racer.race();
+                    racers.add(racer);
                     end.countDown();
                 }catch(InterruptedException e)
                 {
@@ -156,6 +158,9 @@ public class LotsORacers
         for (Racer driver : racers) {
            System.out.println(driver.getName() + " finished in:" + driver.getFinishTime()+" seconds");
         }
+
+        //show the winner
+        System.out.println(racers.get(0).getName() + "Finished first with a time of : " + racers.get(0).getFinishTime());
     }
 
     public static void main(String args[])

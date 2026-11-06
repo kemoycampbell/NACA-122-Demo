@@ -1,11 +1,17 @@
 package concurrency.racing;
 
+import java.util.Random;
+
 public class Racer 
 {
     private String name;
     private int numLaps;
     private long time;
     private boolean debug;
+    private final static int MIN_MILS = 20;
+    private final static int MAX_MILS = 100;
+
+    private Random random;
 
 
     public Racer(String name, int numLaps, boolean debug)
@@ -13,6 +19,7 @@ public class Racer
         this.name = name;
         this.numLaps = numLaps;
         this.debug = debug;
+        this.random = new Random();
     }
 
     public Racer(String name, int numLaps)
@@ -24,6 +31,14 @@ public class Racer
     {
         long start = System.nanoTime();
         for(int lap = 0; lap < numLaps; lap++){
+            try{
+                int sleepTime = random.nextInt(MIN_MILS, MAX_MILS + 1);
+                Thread.sleep(sleepTime);
+            }catch(InterruptedException e){
+                //we will do nothing in this one... but in real world
+                //you want to do something such as log it for observability
+            }
+
             if(debug)
                 System.out.println(String.format("%s completed %d", name, lap));
         }
