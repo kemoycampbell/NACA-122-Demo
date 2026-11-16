@@ -5,6 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 public class HttpRequestParser 
@@ -42,7 +43,30 @@ public class HttpRequestParser
 
     public static String parseBody(HttpStream stream, Map<String, String> headers)
     {
+        //we can use lamda here to go through each key value pair(java call this entrySet)
+        //
+        Entry<String, String> contentLength = headers
+                                              .entrySet()
+                                              .stream()
+                                              .filter(kvp-> kvp.getKey().equals("Content-Length") || kvp.getKey().equals("content-length"))
+                                              .findFirst()
+                                              .orElse(null);
+
+       //did we get content content length?
+       if(contentLength == null){
+            return null;
+       }
+
+       //is the value greater than 0?
+       int length = Integer.parseInt(contentLength.getValue());
+       if(length <=0)
         return null;
+
+       //return the rull content of the body
+       String body = stream.readChars(length);
+       return body;
+
+
     }
 
     // public static void main(String args[])throws Exception
